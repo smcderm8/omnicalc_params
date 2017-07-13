@@ -29,9 +29,29 @@ class CalculationsController < ApplicationController
         
         @monthly_interest_rate = @user_interest_rate/100/12
         
-        @years = 
+        @years = @user_years*12
+        
+        #Left off here for flexible stuff
         
         render("calculations/flexible_square_root_template.html.erb")
+    end
+    
+    def square_form
+        
+        
+        render("calculations/square_form_template.html.erb")
+    end
+    
+    def process_square
+        
+        #The incoming parameters for this actions look like {"the_user_number"=>"8"}
+        #Rails stores that hash in a variable called params
+        
+        @user_number = params["the_user_number"].to_i
+        
+        @squared_number = @user_number**2
+        
+        render("calculations/square_results_template.html.erb")
     end
     
 end

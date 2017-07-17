@@ -25,15 +25,29 @@ class CalculationsController < ApplicationController
         
         @user_years = params["years"].to_i
         
-        @user_principal = params["principal"].to_i
+        @user_principal = params["principal"].to_f
         
-        @monthly_interest_rate = @user_interest_rate/100/12
+        @monthly_interest_rate = @user_interest_rate/100.000/12.000/100.000
         
-        @years = @user_years*12
+        @period = @user_years*12
         
-        #Left off here for flexible stuff
+        @monthly_payment = (@monthly_interest_rate/(1-((1+@monthly_interest_rate)**-@period)))*@user_principal
         
-        render("calculations/flexible_square_root_template.html.erb")
+        #@monthly_payment = (r/(1-((1+r)**-period)))*@principal
+        
+        render("calculations/flexible_payment_template.html.erb")
+    end
+    
+    def flex_random
+        
+        @user_low_end = params["low_end"].to_i
+        
+        @user_high_end = params["high_end"].to_i
+        
+        @random_number = rand(@user_low_end .. @user_high_end)
+        
+        render("calculations/flexible_random_template.html.erb")
+        
     end
     
     def square_form

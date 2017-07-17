@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   get("/flexible/payment/:interest_rate/:years/:principal", { :controller => "calculations", :action =>"flex_payment" })
   
+  get("/flexible/random/:low_end/:high_end", { :controller => "calculations", :action =>"flex_random" })
+  
   
   
   get("/square/new", { :controller => "calculations", :action =>"square_form" })

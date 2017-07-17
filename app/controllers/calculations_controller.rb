@@ -40,9 +40,9 @@ class CalculationsController < ApplicationController
     
     def flex_random
         
-        @user_low_end = params["low_end"].to_f
+        @user_low_end = params["low_end"].to_i
         
-        @user_high_end = params["high_end"].to_f
+        @user_high_end = params["high_end"].to_i
         
         @random_number = rand(@user_low_end .. @user_high_end)
         
